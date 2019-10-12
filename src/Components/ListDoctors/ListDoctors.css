@@ -6,7 +6,7 @@
   width: 100vw;
   float: right;
 }
-.container {
+.container{
   min-height: 100vh;
   display: flex;
   display: -webkit-flex;
@@ -15,5 +15,11 @@
   justify-content: flex-end;
   align-items: auto;
   align-content: center;
+  margin-top: 70px;
+  text-align: center;
   float: right;
+}
+
+.form{
+  width:100%;
 }

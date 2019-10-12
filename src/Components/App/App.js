@@ -14,9 +14,9 @@ class App extends Component {
       <Router>
         <div className='App'>
           <Navigation />
-          <Route path={`/doctor/:id`} component={SingleDoctor} />
           <Route path='/doctors' component={ListDoctors} />
-          <Route path='/' component={LandingPage} />
+          <Route path='/' exact component={LandingPage} />
+          <Route path={`/doctor/:id`} component={SingleDoctor} />
         </div>
       </Router>
     )

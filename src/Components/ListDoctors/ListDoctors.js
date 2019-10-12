@@ -9,8 +9,51 @@ class ListDoctors extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			doctors: null
+			doctors: null,
+			docName: '',
+			city: '',
+			zipcode: ''
 		}
+		this.onFormChange = this.onFormChange.bind(this);
+		this.onFormSubmit = this.onFormSubmit.bind(this);
+
+	}
+
+	onFormSubmit(evt) {
+		evt.preventDefault();
+		const searchInfo = {
+			docName: this.state.docName,
+			city: this.state.city,
+			zipcode: this.state.city
+		}
+		fetch('/search', {
+			method: 'POST',
+			body: JSON.stringify(searchInfo),
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			credentials: "same-origin"
+		})
+			.then(response => response.json())
+			.then(response => {
+				if (response.doctors != null) {
+					return (
+						this.props.doctors(response.doctors)
+					)
+				} else {
+					console.log("Invalid search")
+				}
+			})
+	}
+
+
+	onFormChange(evt) {
+		const element = evt.target;
+		const name = element.name;
+		const value = element.value;
+		const newState = {};
+		newState[name] = value;
+		this.setState(newState);
 	}
 
 	componentDidMount() {
@@ -27,6 +70,13 @@ class ListDoctors extends Component {
 			return (
 				<div className='ListDoctors'>
 					<div className='container'>
+						<div className="form">
+							<form className="Login control" onChange={this.onFormChange} onSubmit={this.onFormSubmit}>
+								<input className='input' type="password" name="password" value={this.state.password} />
+								<input className='button' type="submit" value="submit" />
+							</form>
+						</div>
+						<br/>
 						{this.state.doctors.map((doctor, index) => {
 							return (
 								<ShowDoc
