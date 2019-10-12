@@ -1,0 +1,8 @@
+.SingleDoctor {
+  background-image: url("../../images/brooke-lark-230140-unsplash.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+}
