@@ -4,7 +4,7 @@ import ReactLoading from "react-loading";
 class Loading extends React.Component {
   render() {
     return (
-      <div>
+      <div className="Loading">
           <ReactLoading type={"bars"} color={"black"} />
       </div>
     )

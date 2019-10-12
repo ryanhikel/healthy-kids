@@ -26,20 +26,22 @@ class ListDoctors extends Component {
 		if (this.state.doctors != null) {
 			return (
 				<div className='ListDoctors'>
-					{this.state.doctors.map((doctor, index) => {
-						return (
-							<ShowDoc
-								key={index}
-								doctor={doctor}
-							/>
-						)
-					})}
+					<div className='container'>
+						{this.state.doctors.map((doctor, index) => {
+							return (
+								<ShowDoc
+									key={index}
+									doctor={doctor}
+								/>
+							)
+						})}
+					</div>
 				</div>
 			)
 		}
 		else {
 			return (
-				<Loading/>
+				<Loading />
 			)
 		}
 	}

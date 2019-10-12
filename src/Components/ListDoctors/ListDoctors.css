@@ -1,6 +1,19 @@
 .ListDoctors {
-  background-image: url("../../images/ben-white-lVCHfXn3VME-unsplash.jpg");
+  background-image: url("../../images/brooke-lark-230140-unsplash.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  width: 100vw;
+  float: right;
+}
+.container {
+  min-height: 100vh;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: auto;
+  align-content: center;
+  float: right;
 }

@@ -52,7 +52,7 @@ class SingleDoctor extends Component {
                 <div className="control SingleDoctor">
                     <Link to={{ pathname: "/doctors", }}>
                         <Button variant="primary" renderAs="button">
-                            Back to All Doctors
+                            Back to Search
                         </Button>
                     </Link>
                     <h1 className="title">

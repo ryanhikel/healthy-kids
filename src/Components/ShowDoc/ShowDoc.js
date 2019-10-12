@@ -22,8 +22,8 @@ class Show extends Component {
 		const state = this.props.doctor.practices[0].visit_address.state;
 		const address = `${street + ' ' + city + ", " + state + ' ' + zip}`;
 		return (
-			<div className="ShowDoc">
-				<Card bg="light" style={{ width: '20rem' }}>
+			<div className="item ShowDoc">
+				<Card bg="light" border="dark" style={{ width: '20rem' }}>
 					<Card.Header as="h3">
 						{this.props.doctor.profile.last_name + ', ' + this.props.doctor.profile.first_name + ' ' + this.props.doctor.profile.title}
 					</Card.Header>

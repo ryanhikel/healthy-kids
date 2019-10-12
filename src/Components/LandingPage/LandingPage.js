@@ -8,9 +8,6 @@ class LandingPage extends Component {
       <div className='LandingPage'>
         <h1 className="title">{'(>^_^)> <(^_^)> <(^_^<)'}</h1>
         <p className="title">Healthy Kids</p>
-        <div>
-          <ListDoctors/>
-        </div>
       </div>
     )
   }
