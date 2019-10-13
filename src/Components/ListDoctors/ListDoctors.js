@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./ListDoctors.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ShowDoc from "../ShowDoc/ShowDoc";
-import Loading from "../Loading/Loading"
+import Select from "react-select";
 
 class ListDoctors extends Component {
 
@@ -10,9 +10,8 @@ class ListDoctors extends Component {
 		super(props);
 		this.state = {
 			doctors: null,
-			docName: '',
-			city: '',
-			zipcode: ''
+			searchValue: '',
+			searchType: 'lastName'
 		}
 		this.onFormChange = this.onFormChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -21,31 +20,32 @@ class ListDoctors extends Component {
 
 	onFormSubmit(evt) {
 		evt.preventDefault();
-		const searchInfo = {
-			docName: this.state.docName,
-			city: this.state.city,
-			zipcode: this.state.city
-		}
-		fetch('/search', {
-			method: 'POST',
-			body: JSON.stringify(searchInfo),
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			credentials: "same-origin"
-		})
-			.then(response => response.json())
-			.then(response => {
-				if (response.doctors != null) {
-					return (
-						this.props.doctors(response.doctors)
-					)
-				} else {
-					console.log("Invalid search")
-				}
-			})
-	}
+		let firstName=null;
+		let lastName=null;
+		let gender=null;
+		console.log(this.state.searchType);
 
+		switch (this.state.searchType) {
+			case "firstName":
+				firstName = this.state.searchValue;
+				break;
+			case "lastName":
+				console.log(this.state.searchValue);
+				
+				lastName = this.state.searchValue;
+				break;
+			default:
+				console.log("Error please contact administrator")
+				break;
+		}
+		fetch(`https://api.betterdoctor.com/2016-03-01/doctors?first_name=${firstName}&last_name=${lastName}&skip=0&limit=20&user_key=765d4d94d563c485b63d477fa8644e1d`)
+			.then(response => response.json())
+			.then(doctors => {
+				this.setState({
+					doctors: doctors.data
+				})
+			});
+	}
 
 	onFormChange(evt) {
 		const element = evt.target;
@@ -55,16 +55,6 @@ class ListDoctors extends Component {
 		newState[name] = value;
 		this.setState(newState);
 	}
-
-	componentDidMount() {
-		fetch(`https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=pediatrician&location=48.83901408841116%2C%20-67.23559077109007%2C%2027.726761877858124%2C%20%20-123.48559077109007&skip=0&limit=15&user_key=765d4d94d563c485b63d477fa8644e1d`)
-			.then(response => response.json())
-			.then(doctors => {
-				this.setState({
-					doctors: doctors.data
-				})
-			});
-	}
 	render() {
 		if (this.state.doctors != null) {
 			return (
@@ -72,11 +62,15 @@ class ListDoctors extends Component {
 					<div className='container'>
 						<div className="form">
 							<form className="Login control" onChange={this.onFormChange} onSubmit={this.onFormSubmit}>
-								<input className='input' type="password" name="password" value={this.state.password} />
+								<select  name="searchType">
+									<option selected value="firstName">First Name</option>
+									<option selected value="lastName">Last Name</option>
+								</select>
+								<input className='input' placeholder="Search" type="text" name="searchValue" />
 								<input className='button' type="submit" value="submit" />
 							</form>
 						</div>
-						<br/>
+						<br />
 						{this.state.doctors.map((doctor, index) => {
 							return (
 								<ShowDoc
@@ -91,7 +85,20 @@ class ListDoctors extends Component {
 		}
 		else {
 			return (
-				<Loading />
+				<div className='ListDoctors'>
+					<div className='container'>
+						<div className="form">
+							<form className="Login control" onChange={this.onFormChange} onSubmit={this.onFormSubmit}>
+								<select name="searchType">
+									<option selected value="firstName">First Name</option>
+									<option selected value="lastName">Last Name</option>
+								</select>
+								<input className='input' placeholder="Search" type="text" name="searchValue" />
+								<input className='button' type="submit" value="submit" />
+							</form>
+						</div>
+					</div>
+				</div>
 			)
 		}
 	}

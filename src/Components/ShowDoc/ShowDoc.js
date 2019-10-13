@@ -15,12 +15,22 @@ class Show extends Component {
 	}
 
 	render() {
-		const license = this.props.doctor.licenses.filter(x => x.number !== undefined && x.state !== undefined);
-		const street = this.props.doctor.practices[0].visit_address.street;
-		const zip = this.props.doctor.practices[0].visit_address.zip;
-		const city = this.props.doctor.practices[0].visit_address.city;
-		const state = this.props.doctor.practices[0].visit_address.state;
-		const address = `${street + ' ' + city + ", " + state + ' ' + zip}`;
+		console.log(this.props.doctor);
+		let street1 = '';
+		let street2 = '';
+		let zip = '';
+		let city = '';
+		let state = '';
+		let addresses = [];
+		let license = this.props.doctor.licenses.filter(x => x.number !== undefined && x.state !== undefined);
+		for (let i = 0; i < this.props.doctor.practices.length; i++) {
+			street1 = this.props.doctor.practices[i].visit_address.street;
+			street2 = this.props.doctor.practices[i].visit_address.street2;
+			zip = this.props.doctor.practices[i].visit_address.zip;
+			city = this.props.doctor.practices[i].visit_address.city + ", ";
+			state = this.props.doctor.practices[i].visit_address.state_long;
+			addresses.push(`${street1} ${street2 ? street2: ''} ${city} ${state} ${zip}`)
+		}
 		return (
 			<div className="item ShowDoc">
 				<Card bg="light" border="dark" style={{ width: '20rem' }}>
@@ -51,10 +61,16 @@ class Show extends Component {
 					</Accordion>
 					<Accordion>
 						<Accordion.Toggle as={Button} variant="link" eventKey="0">
-							Address
+							Addresses
 						</Accordion.Toggle>
 						<Accordion.Collapse eventKey="0">
-							<Card.Body>{address}</Card.Body>
+							<Card.Body>
+								{
+									addresses.map((addresses, index) => {
+										return <Card.Text key={index}>{addresses}</Card.Text>
+									})
+								}
+							</Card.Body>
 						</Accordion.Collapse>
 					</Accordion>
 					<Link to={`/doctor/${this.props.doctor.uid}`}>

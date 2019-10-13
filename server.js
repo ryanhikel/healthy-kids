@@ -14,6 +14,18 @@ app.use(session({
 
 app.use("/static", express.static("./build/static/"));
 
+app.post('/search-doctors', (request, response) => {
+  console.log("hello world")  
+  console.log(request);
+  console.log("hello world")
+})
+
+app.post('/favorite', (request, response) => {
+  fetch(`https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=pediatrician&location=48.83901408841116%2C%20-67.23559077109007%2C%2027.726761877858124%2C%20%20-123.48559077109007&skip=0&limit=15&user_key=765d4d94d563c485b63d477fa8644e1d`)
+
+    .then(favorite => response.json(favorite))
+})
+
 // and fallback to 4567
 const PORT = process.env.PORT || 4567;
 
