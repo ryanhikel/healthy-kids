@@ -20,18 +20,18 @@ class ListDoctors extends Component {
 
 	onFormSubmit(evt) {
 		evt.preventDefault();
-		let firstName=null;
-		let lastName=null;
-		let gender=null;
-		console.log(this.state.searchType);
+		let firstName = null;
+		let lastName = null;
 
 		switch (this.state.searchType) {
 			case "firstName":
 				firstName = this.state.searchValue;
+
+				console.log("first " + this.state.searchValue);
 				break;
 			case "lastName":
-				console.log(this.state.searchValue);
-				
+				console.log("first " + this.state.searchValue);
+
 				lastName = this.state.searchValue;
 				break;
 			default:
@@ -62,7 +62,7 @@ class ListDoctors extends Component {
 					<div className='container'>
 						<div className="form">
 							<form className="Login control" onChange={this.onFormChange} onSubmit={this.onFormSubmit}>
-								<select  name="searchType">
+								<select name="searchType">
 									<option selected value="firstName">First Name</option>
 									<option selected value="lastName">Last Name</option>
 								</select>

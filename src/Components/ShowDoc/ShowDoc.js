@@ -15,7 +15,6 @@ class Show extends Component {
 	}
 
 	render() {
-		console.log(this.props.doctor);
 		let street1 = '';
 		let street2 = '';
 		let zip = '';
@@ -34,7 +33,6 @@ class Show extends Component {
 		return (
 			<div className="item ShowDoc">
 				<Card bg="light" border="dark" style={{ width: '20rem' }}>
-					<Card.Img variant="top" src={this.props.doctor.profile.image_url} />
 					<Card.Header as="h3">
 						{this.props.doctor.profile.last_name + ', ' + this.props.doctor.profile.first_name + ' ' + this.props.doctor.profile.title}
 					</Card.Header>
@@ -67,8 +65,8 @@ class Show extends Component {
 						<Accordion.Collapse eventKey="0">
 							<Card.Body>
 								{
-									addresses.map((addresses, index) => {
-										return <Card.Text key={index}>{addresses}</Card.Text>
+									addresses.map((address, index) => {
+										return <Card.Text key={index}>{address}</Card.Text>
 									})
 								}
 							</Card.Body>
