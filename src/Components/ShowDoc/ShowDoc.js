@@ -34,6 +34,7 @@ class Show extends Component {
 		return (
 			<div className="item ShowDoc">
 				<Card bg="light" border="dark" style={{ width: '20rem' }}>
+					<Card.Img variant="top" src={this.props.doctor.profile.image_url} />
 					<Card.Header as="h3">
 						{this.props.doctor.profile.last_name + ', ' + this.props.doctor.profile.first_name + ' ' + this.props.doctor.profile.title}
 					</Card.Header>
