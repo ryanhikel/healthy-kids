@@ -26,8 +26,8 @@ app.post('/favorite', (request, response) => {
     .then(favorite => response.json(favorite))
 })
 
-// and fallback to 4567
-const PORT = process.env.PORT || 4567;
+// and fallback to 5000
+const PORT = process.env.PORT || 5000;
 
 // In production, any request that doesn't match a previous route
 // should send the front-end application, which will handle the route.

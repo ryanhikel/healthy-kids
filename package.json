@@ -2,7 +2,7 @@
   "name": "healthy-kids",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4567",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
