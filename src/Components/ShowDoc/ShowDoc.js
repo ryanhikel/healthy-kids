@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import "./ShowDoc.css";
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';

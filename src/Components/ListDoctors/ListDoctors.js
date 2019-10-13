@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./ListDoctors.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ShowDoc from "../ShowDoc/ShowDoc";
-import Select from "react-select";
 
 class ListDoctors extends Component {
 
@@ -90,8 +88,8 @@ class ListDoctors extends Component {
 						<div className="form">
 							<form className="Login control" onChange={this.onFormChange} onSubmit={this.onFormSubmit}>
 								<select name="searchType">
-									<option selected value="firstName">First Name</option>
-									<option selected value="lastName">Last Name</option>
+									<option value="firstName">First Name</option>
+									<option value="lastName">Last Name</option>
 								</select>
 								<input className='input' placeholder="Search" type="text" name="searchValue" />
 								<input className='button' type="submit" value="submit" />

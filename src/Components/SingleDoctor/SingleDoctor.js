@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./SingleDoctor.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ShowDoc from "../ShowDoc/ShowDoc"
 
