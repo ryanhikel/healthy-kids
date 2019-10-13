@@ -5,4 +5,17 @@
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.splash-title{
+  background-color: rgba(0, 0, 0, 0.65);
+  font-family: Verdana;
+  color: #FFF;
+  border-radius: 25px;
+  margin-top: -600px;
+  padding: 20px;
 }
